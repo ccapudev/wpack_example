@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node bundle.js",
     "dev": "npx webpack-dev-server --config ./envs/webpack.dev.config.js",
+    "dev:hmr": "npx webpack-dev-server --config ./envs/webpack.dev.config.js --hotOnly",
     "build": "npx webpack --config ./envs/webpack.config.js"
   },
   "repository": {
