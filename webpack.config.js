@@ -1,10 +1,12 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    index: '@/index.js',
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: '[name].[hash:7].js'
   },
   module: {
     rules: [
@@ -17,5 +19,12 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       },
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'estilos': path.join(__dirname, 'src/css'),
+      '@': path.join(__dirname, 'src/js'),
+    }
   }
 };
