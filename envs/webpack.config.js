@@ -1,12 +1,18 @@
 const path = require('path');
 
+function resolve(dir){
+  return path.join(__dirname, '..', dir)
+}
+
+
 module.exports = {
+  mode: 'production',
   entry: {
     index: '@/index.js',
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash:7].js'
+    path: resolve('dist'),
+    filename: '[name].js'
   },
   module: {
     rules: [
@@ -23,8 +29,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'estilos': path.join(__dirname, 'src/css'),
-      '@': path.join(__dirname, 'src/js'),
+      'estilos': resolve('src/css'),
+      '@': resolve('src/js'),
     }
   }
 };
