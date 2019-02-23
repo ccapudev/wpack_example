@@ -1,0 +1,8 @@
+dist/
+node_modules/
+*.back
+*.bk
+*.tar
+*.gz
+*.zip
+*.rar
