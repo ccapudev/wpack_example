@@ -1,15 +1,30 @@
 const path = require('path');
+const walker = require('./walker');
 
 function resolve(dir){
   return path.join(__dirname, '..', dir)
 }
 
+function clearName(filename){
+  return filename.split('.').slice(0, -1).join('.')
+}
+
+function load_js_modules(dir){
+  console.log("load_js_modules dir : ", dir);
+  var modules = {};
+  function callback(filename, stats){
+    console.log("filename : ", filename);
+    modules[clearName(filename)] = `@/${filename}`;
+  }
+  walker.walk(dir, callback, false)
+  return modules;
+}
+
+console.log(load_js_modules(resolve('src/js')))
 
 module.exports = {
   mode: 'production',
-  entry: {
-    index: '@/index.js',
-  },
+  entry: load_js_modules(resolve('src/js')),
   output: {
     path: resolve('dist'),
     filename: '[name].js'
